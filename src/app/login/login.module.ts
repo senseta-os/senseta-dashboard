@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login.component';
+import { LoginLayoutComponent } from './login-layout/login-layout.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { LoginComponent } from './login.component';
     LoginRoutingModule
   ],
   declarations: [
-    LoginComponent
+    LoginLayoutComponent,
+    LoginFormComponent
   ]
 })
 export class LoginModule { }

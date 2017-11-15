@@ -1,0 +1,47 @@
+<form role="form"
+  (ngSubmit)="doLogin( $event )"
+  [formGroup]="loginForm">
+  <div class="form-group"
+    [class.is-invalid]="emailField.errors && emailField.dirty">
+    <div class="input-group mb-1">
+      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+      <input
+        type="email"
+        class="form-control form-control-lg input-underline input-lg"
+        [class.text-danger]="emailField.errors && emailField.dirty"
+        [formControl]="emailField"
+        name="email"
+        placeholder="{{'Email' | translate}}">
+    </div>
+    <div *ngIf="emailField.errors && emailField.dirty && showErrors" class="invalid-feedback">
+      <strong>{{'Invalid email' | translate }}.</strong>
+    </div>
+  </div>
+  <div class="form-group"
+    [class.is-invalid]="passwordField.errors && passwordField.dirty">
+    <div class="input-group mb-1">
+      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+      <input
+        type="password"
+        class="form-control form-control-lg input-underline input-lg"
+        name="password"
+        [formControl]="passwordField"
+        placeholder="{{'Password' | translate}}"
+        [class.text-danger]="passwordField.errors && passwordField.dirty">
+    </div>
+    <div *ngIf="passwordField.errors && passwordField.dirty && showErrors" class="invalid-feedback">
+      <strong>{{'Invalid password' | translate }}.</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <button
+        [disabled]="showLoad"
+        type="submit"
+        class="btn btn-primary btn-outline-primary btn-lg px-4">
+        <i *ngIf="showLoad" class="fa fa-spinner fa-pulse"></i>
+        {{'Login' | translate}}
+      </button>
+    </div>
+  </div>
+</form>
