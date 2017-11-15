@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-login-form',
@@ -13,7 +14,11 @@ export class LoginFormComponent implements OnInit {
   emailField: FormControl;
   passwordField: FormControl;
 
-  constructor() {
+  showLoad: boolean;
+
+  constructor(
+    private toastr: ToastsManager,
+  ) {
     this.buildForm();
   }
 
@@ -25,12 +30,14 @@ export class LoginFormComponent implements OnInit {
     if (this.loginForm.valid) {
       this.login();
     }else {
+      this.toastr.error('This is not good!', 'Oops!');
       this.emailField.markAsDirty();
       this.passwordField.markAsDirty();
     }
   }
 
   private buildForm() {
+
     this.emailField = new FormControl('', [Validators.required, Validators.email]);
     this.passwordField = new FormControl('', [Validators.required]);
 
@@ -43,7 +50,15 @@ export class LoginFormComponent implements OnInit {
   private login() {
     const email = this.emailField.value;
     const password = this.passwordField.value;
-    console.log(email, password);
+
+    this.showLoad = true;
+    setTimeout(() => {
+      this.showLoad = false;
+      this.toastr.success('This is good!', 'Oops!', {
+        positionClass: 'toast-bottom-right'
+      });
+      console.log(email, password);
+    }, 5000);
   }
 
 }

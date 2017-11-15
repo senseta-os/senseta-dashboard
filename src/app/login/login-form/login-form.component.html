@@ -13,7 +13,7 @@
         name="email"
         placeholder="{{'Email' | translate}}">
     </div>
-    <div *ngIf="emailField.errors && emailField.dirty && showErrors" class="invalid-feedback">
+    <div *ngIf="emailField.errors && emailField.dirty" class="invalid-feedback">
       <strong>{{'Invalid email' | translate }}.</strong>
     </div>
   </div>
@@ -29,7 +29,7 @@
         placeholder="{{'Password' | translate}}"
         [class.text-danger]="passwordField.errors && passwordField.dirty">
     </div>
-    <div *ngIf="passwordField.errors && passwordField.dirty && showErrors" class="invalid-feedback">
+    <div *ngIf="passwordField.errors && passwordField.dirty" class="invalid-feedback">
       <strong>{{'Invalid password' | translate }}.</strong>
     </div>
   </div>
@@ -39,8 +39,8 @@
         [disabled]="showLoad"
         type="submit"
         class="btn btn-primary btn-outline-primary btn-lg px-4">
-        <i *ngIf="showLoad" class="fa fa-spinner fa-pulse"></i>
         {{'Login' | translate}}
+        <i *ngIf="showLoad" class="fa fa-spinner fa-pulse"></i>
       </button>
     </div>
   </div>
